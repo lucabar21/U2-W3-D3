@@ -35,10 +35,23 @@
                   >Home <span class="visually-hidden">(current)</span></a
                 >
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Il tuo carrello</a>
+              <li class="nav-item dropdown">
+                <a
+                  id="dropdownId"
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  data-bs-auto-close="outside"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Il tuo carrello
+                </a>
+                <ul id="cart" class="dropdown-menu" aria-labelledby="dropdownId"></ul>
               </li>
             </ul>
+
             <form class="d-flex my-2 my-lg-0">
               <input class="form-control me-sm-2" type="text" placeholder="Cerca qui il tuo libro" />
               <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Cerca</button>
@@ -48,12 +61,12 @@
       </nav>
     </header>
     <main>
-      <div class="container mt-5">
-        <div id="row-container" class="row row-gap-4"></div>
-      </div>
-      <div class="bg-dark text-white">
+      <!-- <div class="bg-dark text-white">
         <h2 style="text-align: center">Carrello</h2>
         <ul id="cart"></ul>
+      </div> -->
+      <div class="container mt-5">
+        <div id="row-container" class="row row-gap-4"></div>
       </div>
     </main>
     <script src="./style.js"></script>
