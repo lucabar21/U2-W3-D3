@@ -1,5 +1,5 @@
 //  Effettuo la richiesta HTTP ad un indirizzo attraverso un URL.
-
+const localStorageCart = "cartKey";
 fetch("https://striveschool-api.herokuapp.com/books/")
   .then((response) => {
     if (response.ok) {
@@ -72,6 +72,14 @@ fetch("https://striveschool-api.herokuapp.com/books/")
 
         liCart.appendChild(bin);
         cart.appendChild(liCart);
+
+        const bookList = [];
+
+        cart.querySelectorAll("li").forEach((li) => {
+          bookList.push(li.innerText);
+        });
+
+        localStorage.setItem(localStorageCart, JSON.stringify(bookList));
       });
 
       //   genero i pulsanti che a cui darò l'event di eliminare la card.
@@ -103,3 +111,32 @@ fetch("https://striveschool-api.herokuapp.com/books/")
   })
 
   .catch((error) => console.log(error));
+
+const cartSaved = () => {
+  const keyStored = localStorage.getItem(localStorageCart);
+  const cart = document.getElementById("cart");
+  if (keyStored) {
+    const keyArray = JSON.parse(keyStored);
+    keyArray.forEach((e) => {
+      const liCart = document.createElement("li");
+      liCart.style = "list-style-type: none; font-weight: bold; text-align:center";
+      liCart.innerText = e;
+
+      const bin = document.createElement("a");
+      bin.innerHTML = '<i class="bi bi-trash"></i>';
+      bin.style = "color:red; cursor:pointer";
+
+      bin.addEventListener("click", (e) => {
+        if (liCart) {
+          cart.removeChild(liCart);
+        }
+      });
+
+      liCart.appendChild(bin);
+      cart.appendChild(liCart);
+    });
+  }
+};
+window.onload = () => {
+  cartSaved();
+};
