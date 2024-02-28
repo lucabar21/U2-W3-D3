@@ -73,12 +73,11 @@ fetch("https://striveschool-api.herokuapp.com/books/")
         liCart.appendChild(bin);
         cart.appendChild(liCart);
 
+        // genero un'array dove pusho gli elementi aggiunti con l'onclick e lo "stringifizzo" per farlo leggere al browser.
         const bookList = [];
-
         cart.querySelectorAll("li").forEach((li) => {
           bookList.push(li.innerText);
         });
-
         localStorage.setItem(localStorageCart, JSON.stringify(bookList));
       });
 
@@ -112,6 +111,7 @@ fetch("https://striveschool-api.herokuapp.com/books/")
 
   .catch((error) => console.log(error));
 
+// rigenero il carrello dal localstorage
 const cartSaved = () => {
   const keyStored = localStorage.getItem(localStorageCart);
   const cart = document.getElementById("cart");
@@ -137,6 +137,7 @@ const cartSaved = () => {
     });
   }
 };
+
 window.onload = () => {
   cartSaved();
 };
